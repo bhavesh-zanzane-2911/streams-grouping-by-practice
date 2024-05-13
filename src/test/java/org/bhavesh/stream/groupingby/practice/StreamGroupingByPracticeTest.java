@@ -1,12 +1,13 @@
 package org.bhavesh.stream.groupingby.practice;
 
-import org.bhavesh.stream.groupingby.practice.model.EmployeeExperience;
+import org.bhavesh.stream.groupingby.practice.model.EmployeeDetails;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,10 +19,10 @@ class StreamGroupingByPracticeTest {
     @Test
     void testGetEmployeesGroupByCompany() {
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, List<EmployeeExperience>> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyInList(employeeExperienceList);
+        Map<String, List<EmployeeDetails>> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyInList(employeeDetailsList);
 
         //Then
         assertEquals(8, employeesGroupByCompany.size(), "total unique companies are 8");
@@ -31,10 +32,10 @@ class StreamGroupingByPracticeTest {
     @Test
     void testGetEmployeesGroupingByEmployeeName() {
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, List<EmployeeExperience>> employeesGroupByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByNameInList(employeeExperienceList);
+        Map<String, List<EmployeeDetails>> employeesGroupByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByNameInList(employeeDetailsList);
 
         //Then
         assertEquals(5, employeesGroupByEmployeeName.size(), "total employees are 5");
@@ -47,10 +48,10 @@ class StreamGroupingByPracticeTest {
     void testGetEmployeesGroupByCompanyAndReturnSet() {
 
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, Set<EmployeeExperience>> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnSet(employeeExperienceList);
+        Map<String, Set<EmployeeDetails>> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnSet(employeeDetailsList);
 
         //Then
         assertEquals(8, employeesGroupByCompany.size(), "total employees are 8");
@@ -62,10 +63,10 @@ class StreamGroupingByPracticeTest {
     void getEmployeesGroupByCompanyAndReturnEmployeeCount() {
 
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, Long> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnEmployeeCount(employeeExperienceList);
+        Map<String, Long> employeesGroupByCompany = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnEmployeeCount(employeeDetailsList);
 
         //Then
         assertEquals(8, employeesGroupByCompany.size(), "total employees are 8");
@@ -76,10 +77,10 @@ class StreamGroupingByPracticeTest {
     @Test
     void testGetEmployeesGroupByCompanyAndSortByEmployeeNameAsc() {
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, List<EmployeeExperience>> employeesGroupByCompanyAndSortByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortByEmployeeNameAsc(employeeExperienceList);
+        Map<String, List<EmployeeDetails>> employeesGroupByCompanyAndSortByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortByEmployeeNameAsc(employeeDetailsList);
 
         //Then
         assertEquals(8, employeesGroupByCompanyAndSortByEmployeeName.size(), "total companies are 8");
@@ -89,12 +90,27 @@ class StreamGroupingByPracticeTest {
     }
 
     @Test
-    void testGetEmployeesGroupByCompanyAndSortByEmployeeNameDesc() {
+    void testGetEmployeesGroupByCompanyAndSortBySalaryAsc() {
         //Given
-        List<EmployeeExperience> employeeExperienceList = StreamGroupingByPractice.getEmployeeExperienceList();
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
 
         //When
-        Map<String, List<EmployeeExperience>> employeesGroupByCompanyAndSortByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortByEmployeeNameDesc(employeeExperienceList);
+        Map<String, List<EmployeeDetails>> employeesGroupByCompanyAndSortBySalaryAsc = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortBySalaryAsc(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeesGroupByCompanyAndSortBySalaryAsc.size(), "total companies are 8");
+        assertEquals(5, employeesGroupByCompanyAndSortBySalaryAsc.get("Amdocs").size(), "5 employees has worked for Amdocs");
+        assertEquals("Bhavesh", employeesGroupByCompanyAndSortBySalaryAsc.get("Amdocs").get(0).getEmployeeName(), "Bhavesh comes first in ascending order for Salary at Amdocs");
+
+    }
+
+    @Test
+    void testGetEmployeesGroupByCompanyAndSortByEmployeeNameDesc() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, List<EmployeeDetails>> employeesGroupByCompanyAndSortByEmployeeName = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortByEmployeeNameDesc(employeeDetailsList);
 
         //Then
         assertEquals(8, employeesGroupByCompanyAndSortByEmployeeName.size(), "total companies are 8");
@@ -102,4 +118,88 @@ class StreamGroupingByPracticeTest {
         assertEquals("Yogita", employeesGroupByCompanyAndSortByEmployeeName.get("HCL").get(0).getEmployeeName(), "Yogita comes first in descending order for HCL");
 
     }
+
+    @Test
+    void testGetEmployeesGroupByCompanyAndSortBySalaryDesc() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, List<EmployeeDetails>> employeesGroupByCompanyAndSortBySalaryDesc = StreamGroupingByPractice.getEmployeesGroupByCompanyAndSortBySalaryDesc(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeesGroupByCompanyAndSortBySalaryDesc.size(), "total companies are 8");
+        assertEquals(5, employeesGroupByCompanyAndSortBySalaryDesc.get("Amdocs").size(), "5 employees has worked for Amdocs");
+        assertEquals("Nutan", employeesGroupByCompanyAndSortBySalaryDesc.get("Amdocs").get(0).getEmployeeName(), "Bhavesh comes first in descending order for Salary at Amdocs");
+
+    }
+
+    @Test
+    void testGetEmployeeWithHighestSalaryFromEachDepartment() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, EmployeeDetails> employeeWithHighestSalary = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnTheEmployeeWithHighestSalary(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeeWithHighestSalary.size(), "total companies are 8");
+        assertEquals("Nutan", employeeWithHighestSalary.get("Amdocs").getEmployeeName(), "Nutan has highest salary from Amdocs");
+        assertEquals(1450000.0, employeeWithHighestSalary.get("Amdocs").getSalary(), "Highest salary of Nutan is 1450000.0 from Amdocs");
+        assertEquals("Sachin", employeeWithHighestSalary.get("HCL").getEmployeeName(), "Sachin has highest salary from HCL");
+        assertEquals(1600000.0, employeeWithHighestSalary.get("HCL").getSalary(), "Highest salary of sachin is 1600000 from HCL");
+
+    }
+
+    @Test
+    void testGetEmployeeWithHighestSalaryFromEachDepartmentSecondOption() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, Optional<EmployeeDetails>> employeeWithHighestSalary = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnTheEmployeeWithHighestSalarySecondOption(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeeWithHighestSalary.size(), "total companies are 8");
+        assertEquals("Nutan", employeeWithHighestSalary.get("Amdocs").get().getEmployeeName(), "Nutan has highest salary from Amdocs");
+        assertEquals(1450000.0, employeeWithHighestSalary.get("Amdocs").get().getSalary(), "Highest salary of Nutan is 1450000.0 from Amdocs");
+        assertEquals("Sachin", employeeWithHighestSalary.get("HCL").get().getEmployeeName(), "Sachin has highest salary from HCL");
+        assertEquals(1600000.0, employeeWithHighestSalary.get("HCL").get().getSalary(), "Highest salary of sachin is 1600000 from HCL");
+
+    }
+
+    @Test
+    void testGetEmployeeWithLowestSalaryFromEachDepartment() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, EmployeeDetails> employeeWithLowestSalary = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnTheEmployeeWithLowestSalary(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeeWithLowestSalary.size(), "total companies are 8");
+        assertEquals("Bhavesh", employeeWithLowestSalary.get("Amdocs").getEmployeeName(), "Bhavesh has lowest salary from Amdocs");
+        assertEquals(1000000.0, employeeWithLowestSalary.get("Amdocs").getSalary(), "lowest salary of Bhavesh is 1450000.0 from Amdocs");
+        assertEquals("Yogita", employeeWithLowestSalary.get("HCL").getEmployeeName(), "Yogita has lowest salary from HCL");
+        assertEquals(700000.0, employeeWithLowestSalary.get("HCL").getSalary(), "Lowest salary of sachin is 1600000 from HCL");
+
+    }
+
+    @Test
+    void testGetEmployeeWithLowestSalaryFromEachDepartmentSecondOption() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, Optional<EmployeeDetails>> employeeWithLowestSalary = StreamGroupingByPractice.getEmployeesGroupByCompanyAndReturnTheEmployeeWithLowestSalarySecondOption(employeeDetailsList);
+
+        //Then
+        assertEquals(8, employeeWithLowestSalary.size(), "total companies are 8");
+        assertEquals("Bhavesh", employeeWithLowestSalary.get("Amdocs").get().getEmployeeName(), "Bhavesh has lowest salary from Amdocs");
+        assertEquals(1000000.0, employeeWithLowestSalary.get("Amdocs").get().getSalary(), "lowest salary of Bhavesh is 1450000.0 from Amdocs");
+        assertEquals("Yogita", employeeWithLowestSalary.get("HCL").get().getEmployeeName(), "Yogita has lowest salary from HCL");
+        assertEquals(700000.0, employeeWithLowestSalary.get("HCL").get().getSalary(), "Lowest salary of sachin is 1600000 from HCL");
+
+    }
+
 }

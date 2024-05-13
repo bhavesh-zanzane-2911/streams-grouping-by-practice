@@ -1,6 +1,6 @@
 package org.bhavesh.stream.groupingby.practice.service;
 
-import org.bhavesh.stream.groupingby.practice.model.EmployeeExperience;
+import org.bhavesh.stream.groupingby.practice.model.EmployeeDetails;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,46 +8,46 @@ import java.util.List;
 
 public class EmployeeService {
 
-    public  static List<EmployeeExperience> getEmployeeExperience(String employeeName){
+    public  static List<EmployeeDetails> getEmployeeExperience(String employeeName){
         switch (employeeName) {
             case "Bhavesh" -> {
-                List<EmployeeExperience> employeeExperiences = new ArrayList<>();
-                employeeExperiences.add(new EmployeeExperience(101,"Bhavesh", "Amdocs", 2, Arrays.asList("Java", "Python")));
-                employeeExperiences.add(new EmployeeExperience(201, "Bhavesh","MediaOcean", 3, Arrays.asList("Java", "CPP")));
-                employeeExperiences.add(new EmployeeExperience(301, "Bhavesh","Citi", 4, Arrays.asList("Java", "Go")));
-                return employeeExperiences;
+                List<EmployeeDetails> employeeDetails = new ArrayList<>();
+                employeeDetails.add(new EmployeeDetails(101,"Bhavesh", "Amdocs", 2,1000000.0, Arrays.asList("Java", "Python")));
+                employeeDetails.add(new EmployeeDetails(201, "Bhavesh","MediaOcean", 3,1100000.0, Arrays.asList("Java", "CPP")));
+                employeeDetails.add(new EmployeeDetails(301, "Bhavesh","Citi", 4,1200000.0, Arrays.asList("Java", "Go")));
+                return employeeDetails;
             }
             case "Adesh" -> {
 
-                List<EmployeeExperience> employeeExperiences = new ArrayList<>();
-                employeeExperiences.add(new EmployeeExperience(401, "Adesh","Impetus", 2, Arrays.asList("Java", "C")));
-                employeeExperiences.add(new EmployeeExperience(102, "Adesh","Amdocs", 3, Arrays.asList("Java", "CPP")));
-                employeeExperiences.add(new EmployeeExperience(501, "Adesh","Morgan", 4, Arrays.asList("Java", "Go")));
-                return employeeExperiences;
+                List<EmployeeDetails> employeeDetails = new ArrayList<>();
+                employeeDetails.add(new EmployeeDetails(401, "Adesh","Impetus", 2,1300000.0, Arrays.asList("Java", "C")));
+                employeeDetails.add(new EmployeeDetails(102, "Adesh","Amdocs", 3, 1400000.0,Arrays.asList("Java", "CPP")));
+                employeeDetails.add(new EmployeeDetails(501, "Adesh","Morgan", 4, 1500000.0,Arrays.asList("Java", "Go")));
+                return employeeDetails;
 
             }
             case "Yogita" -> {
-                List<EmployeeExperience> employeeExperiences = new ArrayList<>();
-                employeeExperiences.add(new EmployeeExperience(601, "Yogita","HSBC", 2, Arrays.asList("Java", "React")));
-                employeeExperiences.add(new EmployeeExperience(103, "Yogita","Amdocs", 3, Arrays.asList("Java", "CPP")));
-                employeeExperiences.add(new EmployeeExperience(701, "Yogita","HCL", 4, Arrays.asList("Java", "C")));
-                return employeeExperiences;
+                List<EmployeeDetails> employeeDetails = new ArrayList<>();
+                employeeDetails.add(new EmployeeDetails(601, "Yogita","HSBC", 2, 1700000.0,Arrays.asList("Java", "React")));
+                employeeDetails.add(new EmployeeDetails(103, "Yogita","Amdocs", 3, 1000000.0,Arrays.asList("Java", "CPP")));
+                employeeDetails.add(new EmployeeDetails(701, "Yogita","HCL", 4, 700000.0,Arrays.asList("Java", "C")));
+                return employeeDetails;
             }
 
             case "Nutan" -> {
-                List<EmployeeExperience> employeeExperiences = new ArrayList<>();
-                employeeExperiences.add(new EmployeeExperience(104, "Nutan","Amdocs", 2, Arrays.asList("Java", "React")));
-                employeeExperiences.add(new EmployeeExperience(801, "Nutan","Accolite", 3, Arrays.asList("Java", "CPP")));
-                employeeExperiences.add(new EmployeeExperience(502, "Nutan","Morgan", 4, Arrays.asList("Java", "C")));
-                return employeeExperiences;
+                List<EmployeeDetails> employeeDetails = new ArrayList<>();
+                employeeDetails.add(new EmployeeDetails(104, "Nutan","Amdocs", 2,1450000.0, Arrays.asList("Java", "React")));
+                employeeDetails.add(new EmployeeDetails(801, "Nutan","Accolite", 3, 1900000.0,Arrays.asList("Java", "CPP")));
+                employeeDetails.add(new EmployeeDetails(502, "Nutan","Morgan", 4, 1700000.0,Arrays.asList("Java", "C")));
+                return employeeDetails;
             }
 
             case "Sachin" -> {
-                List<EmployeeExperience> employeeExperiences = new ArrayList<>();
-                employeeExperiences.add(new EmployeeExperience(105, "Sachin","Amdocs", 2, Arrays.asList("Java", "React")));
-                employeeExperiences.add(new EmployeeExperience(702, "Sachin","HCL", 3, Arrays.asList("Java", "CPP")));
-                employeeExperiences.add(new EmployeeExperience(602, "Sachin","HSBC", 4, Arrays.asList("Java", "C")));
-                return employeeExperiences;
+                List<EmployeeDetails> employeeDetails = new ArrayList<>();
+                employeeDetails.add(new EmployeeDetails(105, "Sachin","Amdocs", 2, 1100000.0,Arrays.asList("Java", "React")));
+                employeeDetails.add(new EmployeeDetails(702, "Sachin","HCL", 3, 1600000.0,Arrays.asList("Java", "CPP")));
+                employeeDetails.add(new EmployeeDetails(602, "Sachin","HSBC", 4, 1800000.0,Arrays.asList("Java", "C")));
+                return employeeDetails;
             }
         }
         return new ArrayList<>();

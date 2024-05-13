@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Person {
 
-    private Integer addharNo;
+    private Integer addhharNo;
     private String name;
-    private List<EmployeeExperience> totalExperience;
+    private List<EmployeeDetails> employmentDetailList;
 }
