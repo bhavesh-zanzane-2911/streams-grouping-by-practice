@@ -9,6 +9,7 @@ import java.util.List;
 public class EmployeeExperience {
 
     private Integer employeeId;
+    private String employeeName;
     private String companyName;
     private Integer experience;
     private List<String> languagesKnown;
