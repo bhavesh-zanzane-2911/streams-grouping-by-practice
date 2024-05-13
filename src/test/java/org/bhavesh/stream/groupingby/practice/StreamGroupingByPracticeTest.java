@@ -202,4 +202,19 @@ class StreamGroupingByPracticeTest {
 
     }
 
+    @Test
+    void testGetEmployeeWithAverageSalaryFromEachDepartment() {
+        //Given
+        List<EmployeeDetails> employeeDetailsList = StreamGroupingByPractice.getEmployeeExperienceList();
+
+        //When
+        Map<String, Double> averageSalaryOfEachDepartment = StreamGroupingByPractice.getAverageSalaryOfEachDepartment(employeeDetailsList);
+
+        //Then
+        assertEquals(8, averageSalaryOfEachDepartment.size(), "total companies are 8");
+        assertEquals(1190000.0, averageSalaryOfEachDepartment.get("Amdocs"), "Average salary of Amdocs  is 1190000.0");
+        assertEquals(1150000.0, averageSalaryOfEachDepartment.get("HCL"), "Average salary of HCL is 1150000.0");
+
+    }
+
 }

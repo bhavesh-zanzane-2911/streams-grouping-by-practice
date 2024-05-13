@@ -213,4 +213,18 @@ public class StreamGroupingByPractice {
         employeeWithLowestSalaryFromEachDepartment.forEach((key, value) -> LOG.info("{} : {}", key, value));
         return employeeWithLowestSalaryFromEachDepartment;
     }
+
+    /**
+     * This method return employees group by company name and return an average salary of each department
+     * @param employeeDetailsList the list of employees and their details
+     * @return map of key-value pair where key is company name and value is an average salary of each department
+     */
+    public static Map<String, Double> getAverageSalaryOfEachDepartment(List<EmployeeDetails> employeeDetailsList) {
+        Map<String, Double> averageSalaryFromEachDepartment = employeeDetailsList
+                .stream()
+                .collect(Collectors.groupingBy(EmployeeDetails::getCompanyName,
+                        Collectors.averagingDouble(EmployeeDetails::getSalary)));
+        averageSalaryFromEachDepartment.forEach((key, value) -> LOG.info("{} : {}", key, value));
+        return averageSalaryFromEachDepartment;
+    }
 }
